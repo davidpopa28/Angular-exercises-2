@@ -1,0 +1,158 @@
+<div>
+    <div>
+      <h2>Stores table</h2>
+      <input type="text" placeholder="Search.." [(ngModel)]="keyword" />
+      <button (click)="getStoresByKeyword()">Go!</button>
+      <input type="text" placeholder="Search for city" [(ngModel)]="cityKeyword">
+      <button (click)="getStoresByCity()">Go!</button>
+      <input type="text" placeholder="Search for country" [(ngModel)]="countryKeyword">
+      <button (click)="getStoresByCountry()">Go!</button>
+      <button (click)="getStoresByMonthlyIncome()">
+        sort by monthly income
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Monthly Income On</th>
+          <th>Owner Name</th>
+          <th>Active Since</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let store of filteredStores">
+          <td>{{ store.id }}</td>
+          <td>{{ store.name }}</td>
+          <td>{{ store.city }}</td>
+          <td>{{ store.country }}</td>
+          <td>{{ store.monthlyIncome }}</td>
+          <td>{{ store.ownerName }}</td>
+          <td>{{store.activeSince | date }}</td>
+          <td>
+            <button (click)="toggleEditForm(store)">Edit</button>
+            <button (click)="deleteProduct(store.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="toggleStoreForm()">Create Store</button>
+  
+    <div *ngIf="showStoreForm">
+      <h2>Store Form</h2>
+      <form (ngSubmit)="createStore()">
+        <div>
+          <label for="name">Name: </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            [(ngModel)]="store.name"
+            required
+          />
+        </div>
+        <div>
+          <label for="city">City: </label>
+          <input
+            type="text"
+            name="city"
+            id="city"
+            [(ngModel)]="store.city"
+            required
+          />
+        </div>
+        <div>
+          <label for="country">Country: </label>
+          <input
+            type="text"
+            name="country"
+            id="country"
+            [(ngModel)]="store.country"
+            required
+          />
+        </div>
+        <div>
+          <label for="monthlyIncome">Monthly Income: </label>
+          <input
+            type="text"
+            name="monthlyIncome"
+            id="monthlyIncome"
+            [(ngModel)]="store.monthlyIncome"
+            required
+          />
+        </div>
+        <div>
+          <label for="ownerName">Owner Name: </label>
+          <input
+            type="text"
+            name="ownerName"
+            id="ownerName"
+            [(ngModel)]="store.ownerName"
+            required
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  
+    <div *ngIf="showEditForm">
+      <h2>Product Form</h2>
+      <form (ngSubmit)="editProduct(editedStore, editedStore.id)">
+        <div>
+          <label for="name">Name: </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            [(ngModel)]="editedStore.name"
+            required
+          />
+        </div>
+        <div>
+          <label for="city">City: </label>
+          <input
+            type="text"
+            name="city"
+            id="city"
+            [(ngModel)]="editedStore.city"
+            required
+          />
+        </div>
+        <div>
+          <label for="country">Country: </label>
+          <input
+            type="text"
+            name="country"
+            id="country"
+            [(ngModel)]="editedStore.country"
+            required
+          />
+        </div>
+        <div>
+          <label for="monthlyIncome">Monthly Income: </label>
+          <input
+            type="text"
+            name="monthlyIncome"
+            id="monthlyIncome"
+            [(ngModel)]="editedStore.monthlyIncome"
+            required
+          />
+        </div>
+        <div>
+          <label for="ownerName">Owner Name: </label>
+          <input
+            type="text"
+            name="ownerName"
+            id="ownerName"
+            [(ngModel)]="editedStore.ownerName"
+            required
+          />
+        </div>
+        <button type="submit">Edit Product!</button>
+      </form>
+    </div>
+  </div>
+  
