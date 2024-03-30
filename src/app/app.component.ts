@@ -38,6 +38,17 @@ export class AppComponent implements OnInit {
     });
   }
 
+  filterProducts() {
+    if (!this.keyword || this.keyword.trim() === '') {
+      this.filteredProducts = this.products;
+    } else {
+      this.filteredProducts = this.products.filter(product =>
+        product.name.toLowerCase().includes(this.keyword.toLowerCase()) ||
+        product.description.toLocaleLowerCase().includes(this.keyword.toLocaleLowerCase())
+      );
+    }
+  }
+
   toggleProductForm() {
     this.showProductForm = !this.showProductForm;
   }

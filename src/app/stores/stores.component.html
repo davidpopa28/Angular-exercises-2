@@ -1,7 +1,7 @@
 <div>
     <div>
       <h2>Stores table</h2>
-      <input type="text" placeholder="Search.." [(ngModel)]="keyword" />
+      <input type="text" placeholder="Search.." [(ngModel)]="keyword" (keyup)="filterStores()" />
       <button (click)="getStoresByKeyword()">Go!</button>
       <input type="text" placeholder="Search for city" [(ngModel)]="cityKeyword">
       <button (click)="getStoresByCity()">Go!</button>

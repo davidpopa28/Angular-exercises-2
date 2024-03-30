@@ -42,6 +42,17 @@ export class StoresComponent implements OnInit {
     });
   }
 
+  filterStores() {
+    if (!this.keyword || this.keyword.trim() === '') {
+      this.filteredStores = this.stores;
+    } else {
+      this.filteredStores = this.stores.filter(store =>
+        store.name.toLowerCase().includes(this.keyword.toLowerCase())
+      );
+    }
+  }
+
+
   toggleStoreForm() {
     this.showStoreForm = !this.showStoreForm;
   }

@@ -1,7 +1,7 @@
 <div>
   <div>
     <h2>Products table</h2>
-    <input type="text" placeholder="Search.." [(ngModel)]="keyword" />
+    <input type="text" placeholder="Search.." [(ngModel)]="keyword" (keyup)="filterProducts()" />
     <button (click)="getProductsByKeyword()">Go!</button>
     <button (click)="getProductsByAvgRatingAsc()">
       sort by average rating up
